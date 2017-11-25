@@ -47,33 +47,33 @@ function createTree(data){
     card.setAttribute('style',"margin: 10px; height:auto; width: auto; border: 1px solid grey; border-radius:2px; text-align:center; display:inline-block; vertical-align:top");
 
     const header = document.createElement('div');
-    header.setAttribute('id','teamName');
+    header.setAttribute('id',`teamName${details['employee_id']}`);
     header.innerHTML = details['team-name'];
     header.setAttribute('style',"background:#009999 ; height:auto; color:white; border-bottom: 1px solid #009999; font-size:13px; padding:5px ");
 
     const centerDiv = document.createElement('div');
-    centerDiv.setAttribute('id','employeeData');
+    centerDiv.setAttribute('id',`employeeData${details['employee_id']}`);
     centerDiv.setAttribute('style',"diaplay:inline; margin:10px; font-size:11px; text-align:center; border-bottom: 1px solid grey ");
 
 
     const employeeName =document.createElement('div');
-    employeeName.setAttribute('id','employeeName');
+    employeeName.setAttribute('id',`employeeName${details['employee_id']}`);
     employeeName.innerHTML = details['name'];
 
     const empDesignation=document.createElement('div');
-    empDesignation.setAttribute('id','empDesignation');
+    empDesignation.setAttribute('id',`empDesignation${details['employee_id']}`);
     empDesignation.innerHTML = details['designation'];
 
     centerDiv.appendChild(employeeName);
     centerDiv.appendChild(empDesignation);
 
     const bottomDiv =  document.createElement('div');
-    bottomDiv.setAttribute('id','childrenData');
+    bottomDiv.setAttribute('id',`childrenData${details['employee_id']}`);
     bottomDiv.setAttribute('style',"diaplay:inline; margin:10px; font-size:11px; ");
 
 
     const immidiateChildrenNumber = document.createElement('span');
-    immidiateChildrenNumber.setAttribute('id','immidiateChildren');
+    immidiateChildrenNumber.setAttribute('id',`immidiateChildren${details['employee_id']}`);
     immidiateChildrenNumber.innerHTML = this.childrenNode[details['employee_id']]? this.childrenNode[details['employee_id']].length : 0;
     immidiateChildrenNumber.setAttribute('style',"diaplay:inline-block; margin: 0px 2px ");
 
@@ -101,8 +101,10 @@ function createTree(data){
     card.addEventListener('click',(event) => {
       const id = details["employee_id"];
       this.empData[id].show= !this.empData[id].show;
+      console.log(document.getElementById(`teamName${id}`));
       event.stopPropagation();
       this.createDOM();
+      document.getElementById(`teamName${id}`).style.background="red";
     });
 
     return card;
