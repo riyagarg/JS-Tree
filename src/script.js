@@ -81,7 +81,6 @@ function createTree(data){
     let count = 0;
     let queue = this.childrenNode[details["employee_id"]] ? this.childrenNode[details["employee_id"]].slice(0) : [];
     count = queue.length;
-    console.log(this.childrenNode);
     while (queue.length > 0) {
       const child = queue.shift();
       if(this.childrenNode[child.id]){
